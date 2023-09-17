@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Subscriptions\PlanController;
+use App\Http\Controllers\Subscriptions\SubscriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::group(['namespace' => 'Subscriptions'], function () {
-    Route::get('plans', [PlanController::class, 'index'])->name('plans');
+    Route::get('plans', [PlanController::class, 'index'])->name('subscriptions.plans');
+    Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions');
 });
 
 Route::get('/dashboard', function () {
