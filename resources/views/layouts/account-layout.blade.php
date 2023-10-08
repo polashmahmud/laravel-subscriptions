@@ -7,17 +7,26 @@
 
 
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 md:space-y-0 md:grid grid-cols-8 gap-6">
-       <div class="col-span-2">
-           <ul class="mb-10">
-               <li><a href="{{ route('account') }}" class="hover:text-blue-500">Account</a></li>
-           </ul>
+        <div class="col-span-2 space-y-3">
+            <ul class="mb-10">
+                <li><a href="{{ route('account') }}" class="hover:text-blue-500">Account</a></li>
+            </ul>
 
-           <ul>
-               <li><a href="{{ route('account.subscriptions') }}" class="hover:text-blue-500">Subscription</a></li>
-           </ul>
-       </div>
-       <div class="col-span-6">
-           {{ $slot }}
-       </div>
+            <ul>
+                <li><a href="{{ route('account.subscriptions') }}" class="hover:text-blue-500">Subscription</a></li>
+            </ul>
+
+            @if(auth()->user()->subscribed())
+                @if(!auth()->user()->subscription('default')->cancel())
+                    <ul>
+                        <li><a href="{{ route('account.subscriptions.cancel') }}" class="hover:text-blue-500">Cancel
+                                Subscription</a></li>
+                    </ul>
+                @endif
+            @endif
+        </div>
+        <div class="col-span-6">
+            {{ $slot }}
+        </div>
     </div>
 </x-app-layout>
