@@ -17,9 +17,18 @@
             </ul>
 
             @if(auth()->user()->subscribed())
-                @if(!auth()->user()->subscription('default')->cancel())
+                @if(!auth()->user()->subscription('default')->canceled())
                     <ul>
                         <li><a href="{{ route('account.subscriptions.cancel') }}" class="hover:text-blue-500">Cancel
+                                Subscription</a></li>
+                    </ul>
+                @endif
+            @endif
+
+            @if(auth()->user()->subscribed())
+                @if(auth()->user()->subscription('default')->canceled())
+                    <ul>
+                        <li><a href="{{ route('account.subscriptions.resume') }}" class="hover:text-blue-500">Resume
                                 Subscription</a></li>
                     </ul>
                 @endif

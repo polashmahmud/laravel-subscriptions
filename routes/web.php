@@ -34,6 +34,9 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
       Route::get('/', [\App\Http\Controllers\Account\Subscriptions\SubscriptionController::class, 'index'])->name('account.subscriptions');
       Route::get('/cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
       Route::post('/cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'store']);
+
+       Route::get('/resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
+       Route::post('/resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'store']);
    });
 });
 
